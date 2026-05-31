@@ -119,6 +119,9 @@
     gap: 4rem;
     position: relative;
     overflow: hidden;
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .hero-blob {
@@ -423,6 +426,15 @@
     inset: 0;
     background: linear-gradient(to bottom, transparent 50%, rgba(61,43,31,0.15));
     border-radius: 24px;
+  }
+
+  .about-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    position: absolute;
+    inset: 0;
   }
 
   .about-photo-initial {
@@ -906,35 +918,14 @@
       Clear books,<br>
       <em>calm mind.</em>
     </h1>
-    <p class="hero-sub">Hi, I'm Hoodo, founder of Hanti Bookkeeping. I help small business owners stay organised, understand their numbers, and feel confident about their finances.</p>
+    <p class="hero-sub">Hi, I'm Hoodo — and I help small business owners stay organised, understand their numbers, and stop stressing about their books.</p>
     <div class="hero-actions">
       <a href="mailto:hantibookkeeping@gmail.com" class="btn-warm">✉ Send me an email</a>
       <a href="#services" class="btn-ghost">See what I offer →</a>
     </div>
   </div>
 
-  <div class="hero-visual">
-    <div class="hero-card">
-      <div class="card-icon">📊</div>
-      <div class="card-label">Monthly Summary</div>
-      <div class="card-title">June 2026</div>
-      <div class="card-row">
-        <span class="card-row-label">Total Income</span>
-        <span class="card-row-value positive">$12,480</span>
-      </div>
-      <div class="card-row">
-        <span class="card-row-label">Total Expenses</span>
-        <span class="card-row-value">$4,210</span>
-      </div>
-      <div class="card-row">
-        <span class="card-row-label">Net Profit</span>
-        <span class="card-row-value positive">$8,270</span>
-      </div>
-      <div class="card-footer">
-        ✅ All transactions reconciled
-      </div>
-    </div>
-  </div>
+
 </section>
 
 <!-- TRUST BAR -->
@@ -951,7 +942,7 @@
   <div class="about-grid">
     <div class="about-photo-wrap">
       <div class="about-photo-box">
-        <img src="img.JPG" alt="Hoodo Mohamed" class="about-photo-img">
+        <img src="img.JPG" alt="Hoodo, founder of Hanti Bookkeeping" class="about-photo-img">
       </div>
       <div class="about-badge-float">
         <strong>❤️</strong>
