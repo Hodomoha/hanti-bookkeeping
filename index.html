@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanti Bookkeeping</title>
+<meta name="description" content="Professional bookkeeping services for small businesses. Monthly bookkeeping, financial reporting, and catch-up bookkeeping.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand: #faf6f0;
+    --sand-dark: #f2ebe0;
+    --terracotta: #c4714a;
+    --terracotta-light: #f0d9cd;
+    --terracotta-dark: #a55a36;
+    --brown: #3d2b1f;
+    --brown-mid: #7a5c4a;
+    --brown-light: #b89880;
+    --brown-faint: #e8ddd5;
+    --sage: #7a8c6e;
+    --sage-light: #e8ede4;
+    --white: #fffdf9;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Nunito', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--sand);
+    color: var(--brown);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* ── TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 5rem;
+    background: rgba(250,246,240,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,113,74,0.15);
+    transition: box-shadow 0.3s;
+  }
+
+  nav.scrolled {
+    box-shadow: 0 4px 30px rgba(61,43,31,0.08);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--brown);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-logo span { color: var(--terracotta); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--brown-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+
+  .nav-btn {
+    background: var(--terracotta);
+    color: var(--white) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 50px;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .nav-btn:hover { background: var(--terracotta-dark) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5rem 5rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .hero-blob-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #f0d9cd 0%, transparent 70%);
+    top: -100px; right: -100px;
+  }
+
+  .hero-blob-2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, #e8ede4 0%, transparent 70%);
+    bottom: 50px; left: -80px;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--terracotta-light);
+    color: var(--terracotta-dark);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--terracotta);
+    border-radius: 50%;
+  }
+
+  .hero-heading {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--brown);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-heading em {
+    font-style: italic;
+    color: var(--terracotta);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--brown-mid);
+    line-height: 1.85;
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-warm {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--terracotta);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(196,113,74,0.3);
+  }
+
+  .btn-warm:hover {
+    background: var(--terracotta-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(196,113,74,0.4);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--brown-mid);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--terracotta); }
+
+  .hero-visual {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(61,43,31,0.12), 0 4px 16px rgba(61,43,31,0.06);
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -12px; right: -12px;
+    width: 100%; height: 100%;
+    border-radius: 24px;
+    border: 2px solid var(--terracotta-light);
+    z-index: -1;
+  }
+
+  .card-icon {
+    width: 48px; height: 48px;
+    background: var(--terracotta-light);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .card-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brown-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--brown);
+    margin-bottom: 1.5rem;
+  }
+
+  .card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--brown-faint);
+    font-size: 0.9rem;
+  }
+
+  .card-row:last-of-type { border-bottom: none; }
+
+  .card-row-label { color: var(--brown-mid); font-weight: 400; }
+
+  .card-row-value {
+    font-weight: 600;
+    color: var(--brown);
+  }
+
+  .card-row-value.positive { color: var(--sage); }
+
+  .card-footer {
+    margin-top: 1.2rem;
+    background: var(--sage-light);
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.85rem;
+    color: var(--sage);
+    font-weight: 600;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--brown);
+    padding: 1.4rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: rgba(255,253,249,0.7);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .trust-item .icon {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+
+  /* ── SECTION BASE ── */
+  section { position: relative; z-index: 1; }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1rem;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--terracotta);
+    border-radius: 2px;
+  }
+
+  .section-heading {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--brown);
+    margin-bottom: 1rem;
+  }
+
+  .section-heading em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--brown-mid);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 500px;
+  }
+
+  /* ── ABOUT ── */
+  .about-section {
+    padding: 7rem 5rem;
+    background: var(--white);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-photo-wrap {
+    position: relative;
+  }
+
+  .about-photo-box {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--terracotta-light) 0%, var(--sand-dark) 60%, var(--sage-light) 100%);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-photo-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(61,43,31,0.15));
+    border-radius: 24px;
+  }
+
+  .about-photo-initial {
+    font-family: var(--serif);
+    font-size: 8rem;
+    font-weight: 400;
+    color: rgba(196,113,74,0.25);
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-badge-float {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    background: var(--terracotta);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 1rem 1.4rem;
+    box-shadow: 0 8px 30px rgba(196,113,74,0.35);
+    text-align: center;
+  }
+
+  .about-badge-float strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .about-badge-float span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  .about-text {
+    font-size: 1.02rem;
+    color: var(--brown-mid);
+    line-height: 1.9;
+    margin-bottom: 1.4rem;
+    font-weight: 300;
+  }
+
+  .about-text strong { color: var(--brown); font-weight: 600; }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .value-item {
+    background: var(--sand);
+    border-radius: 14px;
+    padding: 1.2rem 1.4rem;
+    border: 1px solid var(--brown-faint);
+  }
+
+  .value-icon { font-size: 1.3rem; margin-bottom: 0.4rem; }
+
+  .value-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 0.2rem;
+  }
+
+  .value-desc {
+    font-size: 0.8rem;
+    color: var(--brown-light);
+    line-height: 1.5;
+  }
+
+  /* ── SERVICES ── */
+  .services-section {
+    padding: 7rem 5rem;
+    background: var(--sand);
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .services-header .section-tag { justify-content: center; }
+  .services-header .section-tag::before { display: none; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--brown-faint);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(61,43,31,0.1);
+  }
+
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 56px; height: 56px;
+    background: var(--terracotta-light);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-title {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--brown);
+    margin-bottom: 0.8rem;
+  }
+
+  .service-desc {
+    font-size: 0.92rem;
+    color: var(--brown-mid);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: gap 0.2s;
+  }
+
+  .service-link:hover { gap: 0.6rem; }
+
+  /* ── PROCESS ── */
+  .process-section {
+    padding: 7rem 5rem;
+    background: var(--brown);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-section::before {
+    content: 'How it works';
+    position: absolute;
+    font-family: var(--serif);
+    font-size: 12rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.03);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .process-section .section-tag { color: var(--terracotta-light); }
+  .process-section .section-tag::before { background: var(--terracotta-light); }
+  .process-section .section-heading { color: var(--white); }
+
+  .process-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    gap: 2rem;
+  }
+
+  .process-header .section-sub { color: rgba(255,253,249,0.6); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: calc(12.5% + 1rem);
+    right: calc(12.5% + 1rem);
+    height: 1px;
+    background: linear-gradient(90deg, var(--terracotta) 0%, rgba(196,113,74,0.3) 100%);
+    z-index: 0;
+  }
+
+  .process-step {
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-num {
+    width: 4rem; height: 4rem;
+    background: var(--terracotta);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 1.8rem;
+    position: relative;
+    box-shadow: 0 0 0 6px rgba(196,113,74,0.2);
+  }
+
+  .step-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+
+  .step-desc {
+    font-size: 0.88rem;
+    color: rgba(255,253,249,0.55);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 7rem 5rem;
+    background: var(--sand-dark);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-info .section-sub {
+    margin-bottom: 3rem;
+  }
+
+  .contact-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid var(--brown-faint);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .contact-card-icon {
+    width: 48px; height: 48px;
+    background: var(--terracotta-light);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .contact-card-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brown-light);
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-card-value {
+    font-size: 0.98rem;
+    color: var(--brown);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .contact-card-value:hover { color: var(--terracotta); }
+
+  /* CTA BOX */
+  .cta-box {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 3rem;
+    border: 1px solid var(--brown-faint);
+    box-shadow: 0 8px 40px rgba(61,43,31,0.07);
+    text-align: center;
+  }
+
+  .cta-box-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-box h3 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--brown);
+    margin-bottom: 0.8rem;
+  }
+
+  .cta-box p {
+    font-size: 0.98rem;
+    color: var(--brown-mid);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .cta-email-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--terracotta);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem 2.2rem;
+    border-radius: 50px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(196,113,74,0.3);
+    margin-bottom: 1.2rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-email-btn:hover {
+    background: var(--terracotta-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(196,113,74,0.4);
+  }
+
+  .cta-note {
+    font-size: 0.8rem;
+    color: var(--brown-light);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--brown);
+    color: rgba(255,253,249,0.6);
+    padding: 2.5rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  .footer-logo span { color: var(--terracotta-light); }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    color: rgba(255,253,249,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--terracotta-light); }
+
+  .footer-copy { font-size: 0.8rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-badge { animation-delay: 0.1s; }
+  .hero-heading { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.3s; }
+  .hero-actions { animation-delay: 0.4s; }
+  .hero-visual { animation: fadeUp 0.8s 0.3s ease both; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 1.2rem 2.5rem; }
+    .hero { padding: 7rem 2.5rem 4rem; grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .about-section, .services-section, .process-section, .contact-section { padding: 5rem 2.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-photo-wrap { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-header { flex-direction: column; align-items: flex-start; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .process-steps::before { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .trust-bar { padding: 1.4rem 2.5rem; gap: 1.5rem; }
+    footer { padding: 2rem 2.5rem; flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .about-section, .services-section, .process-section, .contact-section { padding: 4rem 1.5rem; }
+    .process-steps { grid-template-columns: 1fr; }
+    .about-values { grid-template-columns: 1fr; }
+    .trust-bar { padding: 1.2rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; }
+    .footer-links { flex-wrap: wrap; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">Hanti <span>Bookkeeping</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#contact" class="nav-btn">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Bookkeeping for small businesses</div>
+    <h1 class="hero-heading">
+      Clear books,<br>
+      <em>calm mind.</em>
+    </h1>
+    <p class="hero-sub">Hi, I'm Hoodo — and I help small business owners stay organised, understand their numbers, and stop stressing about their books.</p>
+    <div class="hero-actions">
+      <a href="mailto:hantibookkeeping@gmail.com" class="btn-warm">✉ Send me an email</a>
+      <a href="#services" class="btn-ghost">See what I offer →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="card-icon">📊</div>
+      <div class="card-label">Monthly Summary</div>
+      <div class="card-title">June 2026</div>
+      <div class="card-row">
+        <span class="card-row-label">Total Income</span>
+        <span class="card-row-value positive">$12,480</span>
+      </div>
+      <div class="card-row">
+        <span class="card-row-label">Total Expenses</span>
+        <span class="card-row-value">$4,210</span>
+      </div>
+      <div class="card-row">
+        <span class="card-row-label">Net Profit</span>
+        <span class="card-row-value positive">$8,270</span>
+      </div>
+      <div class="card-footer">
+        ✅ All transactions reconciled
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="icon">☁️</span> 100% cloud-based</div>
+  <div class="trust-item"><span class="icon">⚡</span> 24h response time</div>
+  <div class="trust-item"><span class="icon">📋</span> Audit-ready books</div>
+  <div class="trust-item"><span class="icon">💰</span> Flat monthly pricing</div>
+  <div class="trust-item"><span class="icon">🔒</span> Secure & confidential</div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-photo-wrap">
+      <div class="about-photo-box">
+        <div class="about-photo-initial">H</div>
+      </div>
+      <div class="about-badge-float">
+        <strong>❤️</strong>
+        <span>Passionate<br>about your books</span>
+      </div>
+    </div>
+    <div class="about-body">
+      <div class="section-tag">About</div>
+      <h2 class="section-heading">Hi, I'm <em>Hoodo</em> —<br>your bookkeeper.</h2>
+      <p class="about-text">I started Hanti Bookkeeping because I believe <strong>every small business deserves financial clarity</strong> — not just the big ones with accounting departments.</p>
+      <p class="about-text">Whether you're a freelancer, a new shop owner, or a growing service business, I'll keep your books clean, your reports clear, and your questions answered — always within one business day.</p>
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-icon">🎯</div>
+          <div class="value-title">Accuracy first</div>
+          <div class="value-desc">Every transaction, every month — done right.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">💬</div>
+          <div class="value-title">Always reachable</div>
+          <div class="value-desc">Real answers, not automated replies.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">📖</div>
+          <div class="value-title">Plain language</div>
+          <div class="value-desc">I explain your numbers so they make sense.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🌱</div>
+          <div class="value-title">Grows with you</div>
+          <div class="value-desc">Start simple, scale as your business does.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-header">
+    <div class="section-tag">Services</div>
+    <h2 class="section-heading">Simple, focused <em>bookkeeping</em></h2>
+    <p class="section-sub" style="margin: 0 auto;">Three core services to keep your finances healthy, without the overwhelm.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📒</div>
+      <h3 class="service-title">Monthly Bookkeeping</h3>
+      <p class="service-desc">Full monthly close, bank reconciliation, and transaction categorisation. You'll always know exactly where your money is going.</p>
+      <a href="mailto:hantibookkeeping@gmail.com" class="service-link">Get started →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📈</div>
+      <h3 class="service-title">Financial Reporting</h3>
+      <p class="service-desc">Clear, readable profit & loss statements, balance sheets, and cash flow reports — delivered to you every month in plain language.</p>
+      <a href="mailto:hantibookkeeping@gmail.com" class="service-link">Get started →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h3 class="service-title">Catch-up Bookkeeping</h3>
+      <p class="service-desc">Months or years behind? No stress. I'll clean up and organise your books thoroughly, no matter the size of the backlog.</p>
+      <a href="mailto:hantibookkeeping@gmail.com" class="service-link">Get started →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div class="process-header">
+    <div>
+      <div class="section-tag">How it works</div>
+      <h2 class="section-heading">Getting started is <em>easy.</em></h2>
+    </div>
+    <p class="section-sub">Four simple steps from first email to clean books.</p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <h3 class="step-title">Say hello</h3>
+      <p class="step-desc">Send me an email and I'll get back to you within one business day to learn about your business.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <h3 class="step-title">Free chat</h3>
+      <p class="step-desc">We'll have a relaxed 30-minute conversation about your needs, your setup, and what would help most.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <h3 class="step-title">Onboarding</h3>
+      <p class="step-desc">I connect to your accounts, sort out any backlog, and get everything set up properly.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">4</div>
+      <h3 class="step-title">Sit back</h3>
+      <p class="step-desc">Your books are handled every month — clean, categorised, and reported. You focus on your business.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="section-tag">Contact</div>
+      <h2 class="section-heading">Let's talk about<br><em>your books.</em></h2>
+      <p class="section-sub">Send me an email and I'll get back to you within one business day. No pressure, no commitment — just a friendly conversation.</p>
+
+      <div style="margin-top: 2.5rem;">
+        <div class="contact-card">
+          <div class="contact-card-icon">✉️</div>
+          <div>
+            <div class="contact-card-label">Email</div>
+            <a href="mailto:hantibookkeeping@gmail.com" class="contact-card-value">hantibookkeeping@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">🕐</div>
+          <div>
+            <div class="contact-card-label">Response time</div>
+            <span class="contact-card-value">Within 1 business day</span>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">🗓️</div>
+          <div>
+            <div class="contact-card-label">Availability</div>
+            <span class="contact-card-value">Mon – Fri, 9am – 5pm CT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-icon">👋</div>
+      <h3>Ready to get started?</h3>
+      <p>Whether you need monthly bookkeeping, a financial report, or help cleaning up a backlog — I'd love to hear from you. Just send me an email and we'll take it from there.</p>
+      <a href="mailto:hantibookkeeping@gmail.com?subject=Bookkeeping%20enquiry" class="cta-email-btn">
+        ✉ Email hantibookkeeping@gmail.com
+      </a>
+      <p class="cta-note">Free 30-minute consultation for all new clients</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Hanti <span>Bookkeeping</span></span>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Hanti Bookkeeping. All rights reserved.</span>
+</footer>
+
+<script>
+  // Navbar scroll shadow
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
